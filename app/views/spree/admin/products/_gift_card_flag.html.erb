@@ -1,0 +1,8 @@
+<div data-hook="admin_product_form_gift_card_flag">
+  <%= f.field_container :gift_card do %>
+    <%= f.label :gift_card, "Gift Card" do %>
+      <%= f.check_box :gift_card %>
+      <%= Spree.t(:"admin.gift_cards.is_gift_card") %>
+    <% end %>
+  <% end %>
+</div>
