@@ -11,7 +11,7 @@ Spree::Core::Engine.routes.draw do
       end
 
       collection do
-        resources :gift_cards, only: [:index, :show]
+        resources :gift_cards, only: [:index, :show], constraints: { :id => /.*/ }
       end
     end
   end

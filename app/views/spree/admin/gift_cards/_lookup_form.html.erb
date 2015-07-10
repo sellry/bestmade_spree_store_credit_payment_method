@@ -2,7 +2,7 @@
 
 <div class='gift-card-code-lookup'>
   <%= form_for :gift_card, url: admin_gift_cards_path, html: {id: 'lookup-redemption-code'} do |f| %>
-    Redemption code or shopify reference: <%= f.text_field :redemption_code %><br />
+    Redemption code, shopify reference, or purchaser email: <%= f.text_field :redemption_code %><br />
     <%= f.submit 'Lookup Gift Card', class: 'lookup-gift-card-button' %>
   <% end %>
 </div>

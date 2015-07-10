@@ -28,7 +28,7 @@ class Spree::Admin::GiftCardsController < Spree::Admin::BaseController
     redemption_code = Spree::RedemptionCodeGenerator.format_redemption_code_for_lookup(params[:id])
     @gift_cards = Spree::VirtualGiftCard.where(redemption_code: redemption_code)
     @gift_cards = Spree::VirtualGiftCard.where(shopify_reference: params[:id].downcase) if @gift_cards.empty?
-
+    @gift_cards = Spree::VirtualGiftCard.where(purchaser: Spree::User.find_by(email: params[:id].downcase)) if @gift_cards.empty?
     if @gift_cards.empty?
       flash[:error] = Spree.t('admin.gift_cards.errors.not_found')
       redirect_to(admin_gift_cards_path)
