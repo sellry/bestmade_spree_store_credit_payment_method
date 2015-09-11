@@ -4,7 +4,7 @@ class Spree::Admin::GiftCardsController < Spree::Admin::BaseController
   before_filter :load_gift_card_for_redemption, only: [:redeem]
 
   def index
-    @gift_cards = Spree::VirtualGiftCard.page(params[:page])
+    @gift_cards = Spree::VirtualGiftCard.order(id: :desc).page(params[:page])
   end
 
   def show
