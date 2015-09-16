@@ -5,7 +5,7 @@ describe "VirtualGiftCard" do
   let!(:secondary_credit_type) { create(:secondary_credit_type) }
 
   context 'validations' do
-    let(:invalid_gift_card) { Spree::VirtualGiftCard.new(amount: 0, currency: 'USD', purchaser: create(:user)) }
+    let(:invalid_gift_card) { Spree::VirtualGiftCard.new(amount: 0, currency: 'USD') }
 
     context 'given an amount less than one' do
       it 'is not valid' do
@@ -20,7 +20,7 @@ describe "VirtualGiftCard" do
   end
 
   context 'before create callbacks' do
-    let(:gift_card) { Spree::VirtualGiftCard.new(amount: 20, currency: 'USD', purchaser: create(:user), line_item: create(:line_item) ) }
+    let(:gift_card) { Spree::VirtualGiftCard.new(amount: 20, currency: 'USD', line_item: create(:line_item) ) }
     subject { gift_card.save }
 
     context 'a redemption code is set already' do
@@ -87,7 +87,7 @@ describe "VirtualGiftCard" do
   end
 
   describe '#redeem' do
-    let(:gift_card) { Spree::VirtualGiftCard.create(amount: 20, currency: 'USD', purchaser: create(:user), line_item: create(:line_item)) }
+    let(:gift_card) { Spree::VirtualGiftCard.create(amount: 20, currency: 'USD', line_item: create(:line_item)) }
     let(:redeemer) { create(:user) }
     subject { gift_card.redeem(redeemer) }
 
